@@ -5,7 +5,8 @@ public class BouncingBallGame extends Game {
     private Ball ball;
     private int score;
 
-    public BouncingBallGame() {
+    @Override
+    public void initialize() {
         ball = new Ball(25);
     }
 
