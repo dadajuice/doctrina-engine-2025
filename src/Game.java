@@ -13,11 +13,8 @@ public abstract class Game {
     public abstract void update();
     public abstract void drawOnBuffer(Graphics2D buffer);
 
-    public Game() {
+    public final void start() {
         renderingEngine = new RenderingEngine();
-    }
-
-    public void start() {
         renderingEngine.start();
         before = System.currentTimeMillis();
         initialize();
