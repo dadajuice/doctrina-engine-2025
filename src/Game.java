@@ -21,6 +21,15 @@ public abstract class Game {
         renderingEngine.start();
         before = System.currentTimeMillis();
         initialize();
+        run();
+        conclude();
+    }
+
+    public void conclude() {
+
+    }
+
+    private void run() {
         while (playing) {
             update();
             drawOnBuffer(renderingEngine.buildBuffer());
