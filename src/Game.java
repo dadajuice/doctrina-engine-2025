@@ -38,17 +38,7 @@ public class Game {
             update();
             drawOnBuffer();
             drawOnScreen();
-
-            long sleep = SLEEP - (System.currentTimeMillis() - before);
-            if (sleep < 4) {
-                sleep = 4;
-            }
-            try {
-                Thread.sleep(sleep);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            before = System.currentTimeMillis();
+            sleep();
         }
     }
 
@@ -71,6 +61,19 @@ public class Game {
         graphics.drawImage(bufferedImage, 0, 0, panel);
         Toolkit.getDefaultToolkit().sync();
         graphics.dispose();
+    }
+
+    private void sleep() {
+        long sleep = SLEEP - (System.currentTimeMillis() - before);
+        if (sleep < 4) {
+            sleep = 4;
+        }
+        try {
+            Thread.sleep(sleep);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        before = System.currentTimeMillis();
     }
 
     private void initializeFrame() {
