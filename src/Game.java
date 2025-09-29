@@ -1,37 +1,28 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Game {
 
     private static final int SLEEP = 25;
 
-    private JFrame frame;
-    private JPanel panel;
+    private RenderingEngine renderingEngine;
     private boolean playing = true;
     private Ball ball;
-    private BufferedImage bufferedImage;
-    private Graphics2D bufferEngine;
     private long before;
     private int score;
 
     public Game() {
-        initializeFrame();
-        initializePanel();
+        renderingEngine = new RenderingEngine();
         ball = new Ball(25);
     }
 
     public void start() {
-        frame.setVisible(true);
+        renderingEngine.start();
         before = System.currentTimeMillis();
         while (playing) {
-            bufferedImage = new BufferedImage(800, 600,
-                    BufferedImage.TYPE_INT_RGB);
-            bufferEngine = bufferedImage.createGraphics();
-            bufferEngine.setRenderingHints(buildRenderingHints());
             update();
-            drawOnBuffer();
-            drawOnScreen();
+            drawOnBuffer(renderingEngine.buildBuffer());
+            renderingEngine.drawOnScreen();
             sleep();
         }
     }
@@ -43,18 +34,11 @@ public class Game {
         }
     }
 
-    public void drawOnBuffer() {
+    public void drawOnBuffer(Graphics2D bufferEngine) {
         ball.draw(bufferEngine);
 
         bufferEngine.setPaint(Color.WHITE);
         bufferEngine.drawString("Score: " + score, 10, 20);
-    }
-
-    public void drawOnScreen() {
-        Graphics2D graphics = (Graphics2D) panel.getGraphics();
-        graphics.drawImage(bufferedImage, 0, 0, panel);
-        Toolkit.getDefaultToolkit().sync();
-        graphics.dispose();
     }
 
     private void sleep() {
@@ -68,31 +52,5 @@ public class Game {
             e.printStackTrace();
         }
         before = System.currentTimeMillis();
-    }
-
-    private void initializeFrame() {
-        frame = new JFrame();
-        frame.setSize(800, 600);
-        frame.setLocationRelativeTo(null); // Center frame
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setState(JFrame.NORMAL);
-    }
-
-    private void initializePanel() {
-        panel = new JPanel();
-        panel.setBackground(Color.BLUE);
-        panel.setFocusable(true);
-        panel.setDoubleBuffered(true);
-        frame.add(panel);
-    }
-
-    private RenderingHints buildRenderingHints() {
-        RenderingHints hints = new RenderingHints(
-                RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
-        hints.put(RenderingHints.KEY_RENDERING,
-                RenderingHints.VALUE_RENDER_QUALITY);
-        return hints;
     }
 }
