@@ -2,10 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class GameWindow extends JFrame {
+public class Game {
 
     private static final int SLEEP = 25;
 
+    private JFrame frame;
     private JPanel panel;
     private boolean playing = true;
     private Ball ball;
@@ -14,24 +15,14 @@ public class GameWindow extends JFrame {
     private long before;
     private int score;
 
-    public GameWindow() {
-        setSize(800, 600);
-        setLocationRelativeTo(null); // Center frame
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setState(JFrame.NORMAL);
-
-        panel = new JPanel();
-        panel.setBackground(Color.BLUE);
-        panel.setFocusable(true);
-        panel.setDoubleBuffered(true);
-        add(panel);
-
+    public Game() {
+        initializeFrame();
+        initializePanel();
         ball = new Ball(25);
     }
 
     public void start() {
-        setVisible(true);
+        frame.setVisible(true);
         before = System.currentTimeMillis();
         while (playing) {
             bufferedImage = new BufferedImage(800, 600,
@@ -80,5 +71,22 @@ public class GameWindow extends JFrame {
         graphics.drawImage(bufferedImage, 0, 0, panel);
         Toolkit.getDefaultToolkit().sync();
         graphics.dispose();
+    }
+
+    private void initializeFrame() {
+        frame = new JFrame();
+        frame.setSize(800, 600);
+        frame.setLocationRelativeTo(null); // Center frame
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setState(JFrame.NORMAL);
+    }
+
+    private void initializePanel() {
+        panel = new JPanel();
+        panel.setBackground(Color.BLUE);
+        panel.setFocusable(true);
+        panel.setDoubleBuffered(true);
+        frame.add(panel);
     }
 }
