@@ -1,6 +1,3 @@
-import javax.swing.*;
-import java.awt.*;
-
 public abstract class Game {
 
     private static final int SLEEP = 25;
@@ -11,7 +8,7 @@ public abstract class Game {
 
     public abstract void initialize();
     public abstract void update();
-    public abstract void drawOnBuffer(Graphics2D buffer);
+    public abstract void draw(Canvas canvas);
 
     public final void start() {
         renderingEngine = new RenderingEngine();
@@ -29,7 +26,7 @@ public abstract class Game {
     private void run() {
         while (playing) {
             update();
-            drawOnBuffer(renderingEngine.buildBuffer());
+            draw(renderingEngine.buildCanvas());
             renderingEngine.drawOnScreen();
             sleep();
         }
