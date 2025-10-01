@@ -1,3 +1,6 @@
+import Doctrina.Canvas;
+import Doctrina.Game;
+
 import java.awt.*;
 
 public final class BouncingBallGame extends Game {

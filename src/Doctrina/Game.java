@@ -1,3 +1,5 @@
+package Doctrina;
+
 public abstract class Game {
 
     private static final int SLEEP = 25;
