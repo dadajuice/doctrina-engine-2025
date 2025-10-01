@@ -1,3 +1,5 @@
+package BouncingBall;
+
 import Doctrina.Canvas;
 
 import java.awt.*;
