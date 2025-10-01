@@ -27,7 +27,7 @@ public abstract class Game {
             update();
             draw(renderingEngine.buildCanvas());
             renderingEngine.drawOnScreen();
-            time.sleep();
+            time.synchronize();
         }
     }
 }
