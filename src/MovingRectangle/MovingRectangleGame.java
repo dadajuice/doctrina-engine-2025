@@ -22,6 +22,9 @@ public class MovingRectangleGame extends Game {
 
     @Override
     public void update() {
+        if (gamePad.isQuitPressed()) {
+            super.stop();
+        }
         player.update();
         npc.update();
     }
