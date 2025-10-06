@@ -1,5 +1,7 @@
 package Doctrina;
 
+import java.awt.event.KeyListener;
+
 public abstract class Game {
 
     private RenderingEngine renderingEngine;
@@ -15,6 +17,10 @@ public abstract class Game {
         initialize();
         run();
         conclude();
+    }
+
+    public void addKeyListener(KeyListener listener) {
+        renderingEngine.addKeyListener(listener);
     }
 
     public void conclude() {
