@@ -52,6 +52,7 @@ public class RenderingEngine {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setState(JFrame.NORMAL);
+        frame.setUndecorated(true);
     }
 
     private void initializePanel() {
