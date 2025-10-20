@@ -1,6 +1,7 @@
 package MovingRectangle;
 
 import Doctrina.MovementController;
+import Doctrina.RenderingEngine;
 
 import java.awt.event.KeyEvent;
 

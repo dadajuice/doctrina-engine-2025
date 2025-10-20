@@ -10,6 +10,7 @@ public class Controller implements KeyListener {
 
     public Controller() {
         pressedKeys = new HashMap<>();
+        RenderingEngine.getInstance().addKeyListener(this);
     }
 
     public void bindKey(int keyCode) {
