@@ -1,22 +1,16 @@
 package AmazingFootprint;
 
 import Doctrina.Canvas;
+import Doctrina.StaticEntity;
 
 import java.awt.*;
 import java.util.Random;
 
-public class Footprint {
-
-    private int x;
-    private int y;
-    private int width;
-    private int height;
+public class Footprint extends StaticEntity {
 
     public Footprint(int x, int y) {
-        this.x = x;
-        this.y = y;
-        width = 5;
-        height = 5;
+        moveTo(x, y);
+        setDimension(5, 5);
     }
 
     public void draw(Canvas canvas) {
