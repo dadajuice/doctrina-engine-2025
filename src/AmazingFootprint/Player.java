@@ -17,15 +17,7 @@ public class Player extends MovableEntity {
     }
 
     public void update() {
-        if (gamePad.isDownPressed()) {
-            moveDown();
-        } else if (gamePad.isUpPressed()) {
-            moveUp();
-        } else if (gamePad.isLeftPressed()) {
-            moveLeft();
-        } else if (gamePad.isRightPressed()) {
-            moveRight();
-        }
+        move(gamePad.getDirection());
     }
 
     public Footprint layFootprint() {

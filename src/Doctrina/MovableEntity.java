@@ -13,8 +13,10 @@ public abstract class MovableEntity extends StaticEntity {
     }
 
     public void move(Direction direction) {
-        this.direction = direction;
-        move();
+        if (direction != null) {
+            this.direction = direction;
+            move();
+        }
     }
 
     public void moveUp() {
