@@ -1,32 +1,30 @@
 package AmazingFootprint;
 
 import Doctrina.Canvas;
+import Doctrina.MovableEntity;
 
 import java.awt.*;
 
-public class Player {
+public class Player extends MovableEntity {
 
     private GamePad gamePad;
-    private int x;
-    private int y;
-    private int speed;
 
     public Player(GamePad gamePad) {
-        x = 200;
-        y = 200;
-        speed = 3;
+        moveTo(200, 200);
+        setSpeed(3);
+        setDimension(20, 60);
         this.gamePad = gamePad;
     }
 
     public void update() {
         if (gamePad.isDownPressed()) {
-            y += speed;
+            moveDown();
         } else if (gamePad.isUpPressed()) {
-            y -= speed;
+            moveUp();
         } else if (gamePad.isLeftPressed()) {
-            x -= speed;
+            moveLeft();
         } else if (gamePad.isRightPressed()) {
-            x += speed;
+            moveRight();
         }
     }
 
@@ -35,6 +33,6 @@ public class Player {
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawRectangle(x, y, 20, 60, Color.WHITE);
+        canvas.drawRectangle(this, Color.WHITE);
     }
 }
