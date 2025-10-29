@@ -1,7 +1,9 @@
 package UltraTank;
 
 import Doctrina.Canvas;
+import Doctrina.CollidableRepository;
 import Doctrina.Game;
+import Doctrina.StaticEntity;
 
 import java.util.ArrayList;
 
@@ -48,7 +50,7 @@ public class UltraTankGame extends Game {
         for (Missile missile : missiles) {
             missile.draw(canvas);
         }
-        for (Brick brick: bricks) {
+        for (Brick brick : bricks) {
             brick.draw(canvas);
         }
     }
