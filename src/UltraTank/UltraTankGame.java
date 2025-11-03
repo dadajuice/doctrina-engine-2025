@@ -39,9 +39,27 @@ public class UltraTankGame extends Game {
             }
         }
         tank.update();
+        ArrayList<StaticEntity> killedElements = new ArrayList<>();
+
         for (Missile missile : missiles) {
             missile.update();
+            for (Brick brick : bricks) {
+                if (missile.hitBoxIntersectsWith(brick)) {
+                    killedElements.add(brick);
+                    killedElements.add(missile);
+                }
+            }
         }
+
+        for (StaticEntity entity : killedElements) {
+            if (entity instanceof Brick) {
+                bricks.remove(entity);
+            }
+            if (entity instanceof Missile) {
+                missiles.remove(entity);
+            }
+        }
+        CollidableRepository.getInstance().unregisterEntities(killedElements);
     }
 
     @Override
