@@ -8,6 +8,7 @@ public class AlphaVikingGame extends Game {
     private Player player;
     private GamePad gamePad;
     private World world;
+    private Tree tree;
 
     @Override
     public void initialize() {
@@ -16,6 +17,8 @@ public class AlphaVikingGame extends Game {
         player.moveTo(200, 200);
         world = new World();
         world.load();
+        tree = new Tree();
+        tree.moveTo(300, 350);
     }
 
     @Override
@@ -29,6 +32,13 @@ public class AlphaVikingGame extends Game {
     @Override
     public void draw(Canvas canvas) {
         world.draw(canvas);
-        player.draw(canvas);
+        // 80 (tree height) - 28 (max for layer switch)
+        if (player.getY() < tree.getY() + 52) {
+            player.draw(canvas);
+            tree.draw(canvas);
+        } else {
+            tree.draw(canvas);
+            player.draw(canvas);
+        }
     }
 }
