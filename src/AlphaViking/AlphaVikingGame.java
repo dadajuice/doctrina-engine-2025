@@ -2,6 +2,7 @@ package AlphaViking;
 
 import Doctrina.Canvas;
 import Doctrina.Game;
+import Doctrina.RenderingEngine;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -35,6 +36,8 @@ public class AlphaVikingGame extends Game {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        RenderingEngine.getInstance().getScreen().fullscreen();
     }
 
     @Override
